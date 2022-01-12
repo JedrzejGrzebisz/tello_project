@@ -1,17 +1,17 @@
 import cv2
-from djitellopy import Tello
+from djitellopy import tello
 import numpy as np
 import time
 
 # Inicjalizacja drona
-#myTelloDrone = Tello()
-#myTelloDrone.connect()
-#myTelloDrone.streamoff()
-#myTelloDrone.streamon()
-#myTelloDrone.takeoff()
-
+myTelloDrone = tello.Tello()
+myTelloDrone.connect()
+myTelloDrone.streamoff()
+myTelloDrone.streamon()
+myTelloDrone.takeoff()
+print(myTelloDrone.get_battery())
 # Komenda wyzerowania prędkości
-#myTelloDrone.send_rc_control(0, 0, 0, 0)
+myTelloDrone.send_rc_control(0, 0, 0, 0)
 
 # Wymiary okna kamery
 w = 480
@@ -67,17 +67,20 @@ def trackingFace(trackingInfo, w, h, pid_yaw, pError_yaw, pid_ud, pError_ud, pid
         yaw_vel = 0
         ud_vel = 0
 
-    # myTello.send_rc_control(0, 0, ud_vel, yaw_vel)
+    myTelloDrone.send_rc_control(0, 0, ud_vel, yaw_vel)
     print(yaw_vel, ud_vel, faceArea)
     return yaw_error, ud_error
 
-cap = cv2.VideoCapture(0)
+#cap = cv2.VideoCapture(0)
 # Pętla główna programu
 while True:
-    #img = myTelloDrone.get_frame_read().frame
-    success, img = cap.read()
+    img = myTelloDrone.get_frame_read().frame
+    #success, img = cap.read()
     img = cv2.resize(img, (w, h))
     img, info = findingFace(img)
     pError_yaw, pError_ud = trackingFace(info, w, h, pid_yaw, pError_yaw, pid_ud, pError_ud, pid_fb, pError_fb)
     cv2.imshow("Kamera", img)
-    cv2.waitKey(1)
+    if cv2.waitKey(1) & 0xFF ==ord('q'):
+        myTelloDrone.send_rc_control(0, 0, 0, 0)
+        myTelloDrone.land()
+        break
