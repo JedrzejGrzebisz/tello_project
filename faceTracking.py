@@ -24,6 +24,8 @@ pError_yaw = 0
 pError_ud = 0
 pError_fb = 0
 
+# Zakres braku poruszania się przód/tył
+fbRange = [4000, 8000]
 
 def findingFace(img):
     faceCascade = cv2.CascadeClassifier("res/haarcascade_frontalface_default.xml")
@@ -61,14 +63,20 @@ def trackingFace(trackingInfo, w, h, pid_yaw, pError_yaw, pid_ud, pError_ud, pid
     ud_vel = pid_ud[0] * ud_error + pid_ud[2] * (ud_error - pError_ud)
     ud_vel = int(np.clip(ud_vel, -50, 50))
     #PID of forward/backward velocity
-
+    if faceArea > fbRange[0] and faceArea < fbRange[1]:
+        fb_vel = 0
+    elif faceArea > fbRange[1]:
+        fb_vel = -15
+    elif faceArea < fbRange[0] and faceArea != 0:
+        fb_vel = 15
     #Sprawdzenie czy wykryto jakąkolwiek twarz
     if centerX == 0 or centerY == 0 or faceArea == 0:
         yaw_vel = 0
         ud_vel = 0
+        fb_vel = 0
 
-    myTelloDrone.send_rc_control(0, 0, ud_vel, yaw_vel)
-    print(yaw_vel, ud_vel, faceArea)
+    myTelloDrone.send_rc_control(0, fb_vel, ud_vel, yaw_vel)
+    print(fb_vel, yaw_vel, ud_vel, faceArea)
     return yaw_error, ud_error
 
 #cap = cv2.VideoCapture(0)
