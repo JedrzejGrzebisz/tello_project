@@ -9,7 +9,7 @@ myTelloDrone = tello.Tello()
 myTelloDrone.connect()
 myTelloDrone.streamoff()
 myTelloDrone.streamon()
-myTelloDrone.takeoff()
+#myTelloDrone.takeoff()
 print(myTelloDrone.get_battery())
 # Komenda wyzerowania prędkości
 myTelloDrone.send_rc_control(0, 0, 0, 0)
@@ -26,7 +26,7 @@ pError_ud = 0
 pError_fb = 0
 
 # Zakres braku poruszania się przód/tył
-fbRange = [5000, 9000]
+fbRange = [4000, 6000]
 
 
 def findingFace(img):
@@ -68,7 +68,7 @@ def trackingFace(trackingInfo, w, h, pid_yaw, pError_yaw, pid_ud, pError_ud, pid
     # PID of forward/backward velocity
     if faceArea > fbRange[0] and faceArea < fbRange[1]:
         fb_vel = 0
-    elif faceArea > fbRange[1]:
+    elif faceArea > fbRange[1] and faceArea != 0:
         fb_vel = -15
     elif faceArea < fbRange[0] and faceArea != 0:
         fb_vel = 15
@@ -78,7 +78,7 @@ def trackingFace(trackingInfo, w, h, pid_yaw, pError_yaw, pid_ud, pError_ud, pid
         ud_vel = 0
         fb_vel = 0
 
-    myTelloDrone.send_rc_control(0, fb_vel, ud_vel, yaw_vel)
+    #myTelloDrone.send_rc_control(0, fb_vel, ud_vel, yaw_vel)
     print(fb_vel, yaw_vel, ud_vel, faceArea)
     return yaw_error, ud_error
 
@@ -98,5 +98,8 @@ while True:
         time.sleep(0.3)
     if cv2.waitKey(1) & 0xFF ==ord('q'):
         myTelloDrone.send_rc_control(0, 0, 0, 0)
-        myTelloDrone.land()
+        myTelloDrone.streamoff()
+        #myTelloDrone.land()
         break
+
+cv2.destroyAllWindows()
