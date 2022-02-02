@@ -9,7 +9,7 @@ myTelloDrone = tello.Tello()
 myTelloDrone.connect()
 myTelloDrone.streamoff()
 myTelloDrone.streamon()
-#myTelloDrone.takeoff()
+myTelloDrone.takeoff()
 print(myTelloDrone.get_battery())
 # Komenda wyzerowania prędkości
 myTelloDrone.send_rc_control(0, 0, 0, 0)
@@ -78,7 +78,7 @@ def trackingFace(trackingInfo, w, h, pid_yaw, pError_yaw, pid_ud, pError_ud, pid
         ud_vel = 0
         fb_vel = 0
 
-    #myTelloDrone.send_rc_control(0, fb_vel, ud_vel, yaw_vel)
+    myTelloDrone.send_rc_control(0, fb_vel, ud_vel, yaw_vel)
     print(fb_vel, yaw_vel, ud_vel, faceArea)
     return yaw_error, ud_error
 
@@ -99,7 +99,7 @@ while True:
     if cv2.waitKey(1) & 0xFF ==ord('q'):
         myTelloDrone.send_rc_control(0, 0, 0, 0)
         myTelloDrone.streamoff()
-        #myTelloDrone.land()
+        myTelloDrone.land()
         break
 
 cv2.destroyAllWindows()
