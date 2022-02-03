@@ -26,9 +26,17 @@ python3 ./faceTracking.py
 
 ## Rezultaty działania
 
-Ruch drona góra/dół:
+Lot drona góra/dół:
 
 ![gora_dol](https://user-images.githubusercontent.com/71281671/152399144-8b5f4db8-3582-4d66-a0d8-90dcaa7aedb9.gif)
+
+Obrót drona lewo/prawo:
+
+![obrot](https://user-images.githubusercontent.com/71281671/152399610-47af7e2e-7d3b-4287-8c8a-7b4418d51b62.gif)
+
+Lot drona przód/tył:
+
+![przod_tyl](https://user-images.githubusercontent.com/71281671/152399693-2299b6cd-e37a-40b7-a2e9-ea8545077363.gif)
 
 
 ## Autorzy
