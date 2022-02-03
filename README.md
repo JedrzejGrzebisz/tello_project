@@ -1,2 +1,2 @@
-# tello_project
-Projekt z zajęć Identyfikacja i Sterowanie Robotami Latającymi
+# Projekt z wykorzystaniem drona DJI Ryze Tello - śledzenie twarzy
+## Identyfikacja i Sterowanie Robotami Latającymi
