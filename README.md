@@ -120,6 +120,7 @@ Lot drona przód/tył:
 ![przod_tyl](https://user-images.githubusercontent.com/71281671/152399693-2299b6cd-e37a-40b7-a2e9-ea8545077363.gif)
 
 Film prezentujący efekt działania programu(z perspektywy osoby trzeciej): [Nagranie z kamery zewnętrznej](https://github.com/JedrzejGrzebisz/tello_project/blob/master/filmy/Prezentacja_rzeczywista.mp4)
+
 Film prezentujący efekt działania programu(z perspektywy drona): [Nagranie z kamery drona](https://github.com/JedrzejGrzebisz/tello_project/blob/master/filmy/Prezentacja_programistyczna.mp4)
 
 ## Autorzy
