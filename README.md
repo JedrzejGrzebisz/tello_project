@@ -27,6 +27,7 @@ python3 ./faceTracking.py
 ## Rezultaty działania
 
 Ruch drona góra/dół:
+
 ![gora_dol](https://user-images.githubusercontent.com/71281671/152399144-8b5f4db8-3582-4d66-a0d8-90dcaa7aedb9.gif)
 
 
