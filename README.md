@@ -98,9 +98,11 @@ while True:
 Po uruchmieniu aplikacji i kilku sekundach inicjalizacji drona uruchomiony zostanie obraz z kamery i rozpoczęty proces śledzenia, który przedstawiony został w kolejnym punkcie. Dodatkowo w konsoli *pythona* na bieżąco wyświetlana jest informacja o trzech zadawanych prędkościach(kolejno przód/tył, obrót, góra/dół) dla drona oraz informacja o aktualnie wyliczanym polu powierzchni twarzy, co jest przydatne w celu określenia kiedy dron zacznie zbliżać się lub oddalać od wykrytej twarzy(regulacja trójpołożeniowa).
 
 Obraz z kamery drona:
+
 ![kamera](https://user-images.githubusercontent.com/64974963/152412132-8f4c43ff-54b9-4c22-96b7-07322d0ef66a.png)
 
 Obraz z konsoli:
+
 ![konsola](https://user-images.githubusercontent.com/64974963/152412409-abaac261-57e3-4da5-bf65-3745ab712b7a.png)
 
 ## Rezultaty działania
