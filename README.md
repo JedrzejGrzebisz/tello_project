@@ -14,7 +14,7 @@ Dla poprawnego działania aplikacji wymagany jest [Python](https://www.python.or
 - [time](https://docs.python.org/3/library/time.html)
 
 ## Uruchomienie aplikacji
-W celu uruchomienia aplikacji należy pobrać katalog projektowy, a następnie w środowisku Python wraz z przedstawionymi wcześniej bibliotekami uruchomić plik [faceTracking](https://github.com/JedrzejGrzebisz/tello_project/blob/master/faceTracking.py). Jednocześnie należy pamiętać o połączeniu się poprzez wi-fi z dronem DJI(nie jest wymagana żadna dodatkowa konfiguracja połączenia).
+W celu uruchomienia aplikacji należy pobrać katalog projektowy, a następnie w środowisku Python wraz z przedstawionymi wcześniej bibliotekami uruchomić plik [faceTracking.py](https://github.com/JedrzejGrzebisz/tello_project/blob/master/faceTracking.py). Jednocześnie należy pamiętać o połączeniu się poprzez wi-fi z dronem DJI(nie jest wymagana żadna dodatkowa konfiguracja połączenia).
 
 ```
 git clone https://github.com/JedrzejGrzebisz/tello_project.git
@@ -38,10 +38,10 @@ myTelloDrone.send_rc_control(0, 0, 0, 0)
 ```
 
 ### Wykrywanie twarzy
-Proces wykrywania twarzy został zrealizowany poprzez bibliotekę *opencv* i ogólnodostępny klasyfikator Haaro-podobny. W kodzie funckją odpowiedzialną za tą część jest *findingFace()*, ktora poprzez zastosowanie standardowej procedury wykrywania obiektów z kamery znajduje twarze, rysując w okół nich prostokąty i zaznaczając punkt centralny. Z funkcji zwracana jest informacja o położeniu oraz polu powierzchni największej twarzy znajdującej się na ekranie aby sprecyzować która z możliwie kilku wykrytych ma zostać śledzona(założone zostało, że ma to być twarz najbliższa kamerze drona).
+Proces wykrywania twarzy został zrealizowany poprzez bibliotekę *opencv* i ogólnodostępny klasyfikator Haaro-podobny. W kodzie funckją odpowiedzialną za tą część jest ```findingFace()```, ktora poprzez zastosowanie standardowej procedury wykrywania obiektów z kamery znajduje twarze, rysując w okół nich prostokąty i zaznaczając punkt centralny. Z funkcji zwracana jest informacja o położeniu oraz polu powierzchni największej twarzy znajdującej się na ekranie aby sprecyzować która z możliwie kilku wykrytych ma zostać śledzona(założone zostało, że ma to być twarz najbliższa kamerze drona).
 
 ### Śledzenie twarzy
-Funckja odpowiedzialna za śledzenie twarzy *trackingFace()* opiera się na danych dotyczących lokalizacji twarzy na obrazie oraz jej pola powierzchni wyznaczonych przez funkcję *findingFace()*. W celu obliczenia prędkości jakie należy zadać w konkretnych osiach wykorzystane zostało zaimplementowanie regulatorów PD oraz regulatora trójpołożeniowy:
+Funckja odpowiedzialna za śledzenie twarzy ```trackingFace()``` opiera się na danych dotyczących lokalizacji twarzy na obrazie oraz jej pola powierzchni wyznaczonych przez funkcję ```findingFace()```. W celu obliczenia prędkości jakie należy zadać w konkretnych osiach wykorzystane zostało zaimplementowanie regulatorów PD oraz regulatora trójpołożeniowy:
 
 ```python
 pid_yaw = [0.4, 0, 0.4]
@@ -75,7 +75,7 @@ myTelloDrone.send_rc_control(0, fb_vel, ud_vel, yaw_vel)
 Wybrane nastawy regulatora PD oraz zadawane prędkości zostały wybrane doświadczalnie w celu ograniczenia gwałtownych ruchów drona, przy jednocześnie zachowanej odpowiedniej dynamice śledzenia. W przypadku braku wykrywania twarzy na kamerze prędkości drona były zerowane.
 
 ### Pętla główna programu
-Pętla główna programu zawiera w sobie odczyt obrazu z kamery drona oraz jego skalowanie, następnie wywoływane są dwie omawiane wcześniej funkcje i wyświetlony obraz z kamery. Dodatkową funkcjonalnością zaimplementowaną w pętli jest możliwość wykonania w dowolnej chwili zdjęcia poprzez kamerę z wykorzystaniem przycisku "z" na klawiaturze oraz mozliwość wylądowania dronem poprzez przycisk "q", co jednocześnie prowadzi do wyjścia z pętli oraz zakończenia pracy programu.
+Pętla główna programu zawiera w sobie odczyt obrazu z kamery drona oraz jego skalowanie, następnie wywoływane są dwie omawiane wcześniej funkcje i wyświetlony obraz z kamery. Dodatkową funkcjonalnością zaimplementowaną w pętli jest możliwość wykonania w dowolnej chwili zdjęcia poprzez kamerę z wykorzystaniem przycisku **z** na klawiaturze oraz mozliwość wylądowania dronem poprzez przycisk **q**, co jednocześnie prowadzi do wyjścia z pętli oraz zakończenia pracy programu.
 
 ```python
 while True:
@@ -119,9 +119,9 @@ Lot drona przód/tył:
 
 ![przod_tyl](https://user-images.githubusercontent.com/71281671/152399693-2299b6cd-e37a-40b7-a2e9-ea8545077363.gif)
 
-Film prezentujący efekt działania programu(z perspektywy osoby trzeciej): [Nagranie z kamery zewnętrznej](https://github.com/JedrzejGrzebisz/tello_project/blob/master/filmy/Prezentacja_rzeczywista.mp4)
+Film prezentujący efekt działania programu(z perspektywy osoby trzeciej): [Nagranie z kamery zewnętrznej](https://github.com/JedrzejGrzebisz/tello_project/blob/master/video/Prezentacja_rzeczywista.mp4)
 
-Film prezentujący efekt działania programu(z perspektywy drona): [Nagranie z kamery drona](https://github.com/JedrzejGrzebisz/tello_project/blob/master/filmy/Prezentacja_programistyczna.mp4)
+Film prezentujący efekt działania programu(z perspektywy drona): [Nagranie z kamery drona](https://github.com/JedrzejGrzebisz/tello_project/blob/master/video/Prezentacja_programistyczna.mp4)
 
 ## Autorzy
 
